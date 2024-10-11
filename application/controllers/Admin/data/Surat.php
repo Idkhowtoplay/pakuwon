@@ -1058,7 +1058,7 @@ class Surat extends CI_Controller
         $pdf->Cell(80);
         $pdf->Cell(10, 0, ':', 0, 1);
         $pdf->Cell(82);
-        $pdf->Cell(10, 0, $penduduk['alamat_spesifik'], 0, 1);
+        $pdf->MultiCell(100, 6, $penduduk['alamat_spesifik'], 0, 1);
         $pdf->Ln(7);
         $pdf->Cell(12);
         $pdf->Cell(10, 0, 'Alamat Baru', 0, 1);
@@ -1068,7 +1068,7 @@ class Surat extends CI_Controller
         $pdf->Cell(10, 0, '...................................................................................', 0, 1);
         $pdf->Ln(7);
         $pdf->Cell(12);
-        $pdf->MultiCell(170, 7, 'Bahwa yang bersangkutan benar-benar telah pindah dari alamat lama ke alamat baru yang disebutkan di atas pada tanggal ..................................................................................', 0, 'J', FALSE);
+        $pdf->MultiCell(170, 7, 'Bahwa yang bersangkutan benar-benar telah pindah dari alamat lama ke alamat baru yang disebutkan di atas pada tanggal ' . date('d F Y') . '.', 0, 'J', FALSE);
         $pdf->SetFont('Arial', 'B', '12');
         $pdf->SetFont('');
         $pdf->Ln(7);
@@ -1167,6 +1167,13 @@ class Surat extends CI_Controller
     $pdf->Cell(10, 0, $penduduk['jenis_kelamin'], 0, 1);
     $pdf->Ln(7);
     $pdf->Cell(12);
+    $pdf->Cell(10, 0, 'NIK', 0, 1);
+    $pdf->Cell(60);
+    $pdf->Cell(10, 0, ':', 0, 1);
+    $pdf->Cell(62);
+    $pdf->Cell(10, 0, $penduduk['nik'], 0, 1);
+    $pdf->Ln(7);
+    $pdf->Cell(12);
     $pdf->Cell(10, 0, 'Agama', 0, 1);
     $pdf->Cell(60);
     $pdf->Cell(10, 0, ':', 0, 1);
@@ -1185,11 +1192,8 @@ class Surat extends CI_Controller
     $pdf->Cell(60);
     $pdf->Cell(10, 0, ':', 0, 1);
     $pdf->Cell(62);
-    $pdf->Cell(100, 0, $penduduk['alamat_spesifik'], 0, 'L');
-    $pdf->Ln(4);
-    $pdf->Cell(62);
-    $pdf->Cell(100, 6, '...................................................................................', 0, 'L');
-    $pdf->Ln(10);
+    $pdf->MultiCell(100, 6, $penduduk['alamat_spesifik'], 0, 'L');
+    $pdf->Ln(7);
     $pdf->Cell(12);
     $pdf->Cell(10, 0, 'Alamat Tujuan', 0, 1);
     $pdf->Cell(60);
@@ -1201,7 +1205,7 @@ class Surat extends CI_Controller
     $pdf->Cell(100, 6, '...................................................................................', 0, 'L');
     $pdf->Ln(10);
     $pdf->Cell(12);
-    $pdf->MultiCell(170, 7, 'Bahwa yang bersangkutan telah datang dari alamat asal dan sekarang berdomisili di alamat tujuan dengan lampiran lengkap Kartu Keluarga yang datang.', 0, 'J', FALSE);
+    $pdf->MultiCell(170, 7, 'Telah datang ke wilayah kami pada tanggal '. date('d F Y') .' dan bermaksud menetap di alamat tersebut. Berdasarkan data yang diberikan, yang bersangkutan telah memenuhi syarat sebagai penduduk yang sah di wilayah Pakuwon.', 0, 'J', FALSE);
     $pdf->Ln(7);
     $pdf->Cell(12);
     $pdf->Cell(10, 0, 'Demikian surat pernyataan ini dibuat untuk digunakan sebagaimana mestinya.', 0, 1,);
